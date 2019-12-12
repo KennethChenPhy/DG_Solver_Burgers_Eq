@@ -56,8 +56,8 @@ endsubroutine JacobiP_
 !Gives only upto N-1 th order dP_n=P_{n-1}
         subroutine GradJacobiP_(x,alpha,beta,N,Nc,dP)
                             implicit none
-            real(8),intent(in) :: x(1:Nc),alpha,beta
             integer,intent(in) :: N,Nc
+            real(8),intent(in) :: x(1:Nc),alpha,beta
             real(8) :: dP(0:N,1:Nc),dPtemp(0:N-1,1:Nc)
             integer::i,j
             if(N==0)then

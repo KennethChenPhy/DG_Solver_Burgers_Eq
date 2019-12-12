@@ -1,16 +1,14 @@
 .SUFFIXES :
 .SUFFIXES : .f90 .o
 SYSTEM = 
-FC = gfortran 
-LAPATH = /home/kennethchenphy/lapack-3.8.0
-LIB = $(LAPATH)/liblapack.a $(LAPATH)/librefblas.a
+FC = ifort
+FFLAGS = -mkl -g
 F_SRC = Global_var.o Global_math.o Nodal1D.o Grid1D.o SlopeLimiter.o\
 Burgers1D.o DG_BurgersDriver1D.o
-FFLAGS =  
 .f90.o:
 	$(FC) -c $(FFLAGS) $<
 Executable : $(F_SRC)
-	$(FC) -o Executable $(FFLAGS) $(F_SRC) $(LIB) 
+	$(FC) -o Executable $(FFLAGS) $(F_SRC)
 Global_var.o: Global_var.f90
 Global_math.o:Global_math.f90
 Nodal1D.o: Nodal1D.f90

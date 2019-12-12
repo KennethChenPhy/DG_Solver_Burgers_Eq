@@ -5,7 +5,7 @@ program main
         use SlopeLimiter
         use Burgers1D
   implicit none
-real(8)::ftime,u(Nc,K),RHS(Nc,K)
+real(8)::ftime,u(Nc,K)
 integer::i,j
     call Initial1D
 
@@ -21,7 +21,7 @@ enddo
 
 
 
-!u=sin(x)
+!u=sin(x*Pi)
 
 write(*,*) 'Input final time'
 read(*,*) ftime

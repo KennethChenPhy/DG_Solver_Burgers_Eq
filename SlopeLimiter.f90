@@ -99,10 +99,8 @@ x0(:)=(x(Nc,:)-x(1,:))/2.d0+x(1,:)
         uavg=matmul(V,utilde)
 !uavg=matmul(Dr,u)*rx
 do i=1,K
-if (abs(uv(1,i)-u(1,i))<nodetol .and. abs(uv(2,i)-u(Nc,i)<nodetol)) cycle
-!  uavg(:,i)=uave(0,i)+(x(:,i)-x0(i))*uavg(:,i)
+if (abs(uv(1,i)-u(1,i))<nodetol .and. abs(uv(2,i)-u(Nc,i))<nodetol) cycle
   u(:,i)=SlopeLimit1Element(uavg(:,i),x(:,i),uave(:,i))
 enddo
-!call SlopeLimit1(u)
 endsubroutine SlopeLimitN
 endmodule SlopeLimiter
