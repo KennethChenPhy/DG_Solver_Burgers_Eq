@@ -33,8 +33,8 @@ function SlopeLimit1Element(uk,cord,uave) result(PIuk)
         h=cord(Nc)-cord(1)
         x0=cord(1)+h/2.d0
         PIuk=2.d0/h*matmul(Dr,uk)
-        uv(2)=(uave(1)-uave(0))/h*2.d0
-        uv(3)=(uave(0)-uave(-1))/h*2.d0
+        uv(2)=(uave(1)-uave(0))/h
+        uv(3)=(uave(0)-uave(-1))/h
 
         do i=1,Nc
 
@@ -90,24 +90,19 @@ m(2)=uave(0,i)-uave(-1,i)
 m(3)=uave(1,i)-uave(0,i)
 uv(1,i)=uave(0,i)-minmod(m)
 m(1)=u(Nc,i)-uave(0,i)
-m(2)=uave(0,i)-uave(-1,i)
-m(3)=uave(1,i)-uave(0,i)
 uv(2,i)=uave(0,i)+minmod(m)
 enddo
-do i=1,K
-x0(i)=(x(Nc,i)-x(1,i))/2.d0+x(1,i)
-enddo
-do i=1,K
-if (abs(uv(1,i)-u(1,i))<nodetol .and. abs(uv(2,i)-u(Nc,i)<nodetol)) cycle
+x0(:)=(x(Nc,:)-x(1,:))/2.d0+x(1,:)
+
         utilde=matmul(invV,u)
         utilde(2:N,:)=0.d0
         uavg=matmul(V,utilde)
 !uavg=matmul(Dr,u)*rx
-  do j=1,Nc
-  uavg(j,i)=uave(0,i)+(x(j,i)-x0(i))*uavg(j,i)
-  enddo
-u(:,i)=SlopeLimit1Element(uavg(:,i),x(:,i),uave(:,i))
-
+do i=1,K
+if (abs(uv(1,i)-u(1,i))<nodetol .and. abs(uv(2,i)-u(Nc,i)<nodetol)) cycle
+!  uavg(:,i)=uave(0,i)+(x(:,i)-x0(i))*uavg(:,i)
+  u(:,i)=SlopeLimit1Element(uavg(:,i),x(:,i),uave(:,i))
 enddo
+!call SlopeLimit1(u)
 endsubroutine SlopeLimitN
 endmodule SlopeLimiter

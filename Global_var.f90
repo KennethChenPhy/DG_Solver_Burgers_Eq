@@ -12,8 +12,8 @@ real(8)::nodetol=1.d-10 !nodal tolorence
 !Nfp # of nodes on face
 !Only changable after commands: make clean and make
 real(8),parameter:: Pi=3.14159265358979323846
-integer,parameter:: K=30
-integer,parameter:: N=10
+integer,parameter:: K=100
+integer,parameter:: N=20
 integer,parameter:: Nc=N+1
 integer,parameter:: Nv=K+1
 integer,parameter:: Nfp=1
