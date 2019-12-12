@@ -3,7 +3,6 @@ program main
         use Global_math
         use Grid1D
         use SlopeLimiter
-!        use Advect1D
         use Burgers1D
   implicit none
 real(8)::ftime,u(Nc,K),RHS(Nc,K)
@@ -34,7 +33,6 @@ write(*,*) 'Option 2: LS-RK4 method'
 write(*,*) 'Option 3: SSP-RK4 method'
 read(*,*) opt
 
-!call Advect1D_(u,ftime)
 call Burgers1D_(u,ftime)
 
 

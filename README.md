@@ -1,5 +1,3 @@
-good luck!
-
 
 ref: https://github.com/tcew/nodal-dg
 Follow the book 'Nodal Discontinuous Galerkin Method' to have a standalone Burgers' Equation Solver
@@ -22,31 +20,3 @@ Follow the book 'Nodal Discontinuous Galerkin Method' to have a standalone Burge
 17. Time evolution, low-storage five-stage fourth-order explicit RK method
 18. Driver routine to read grid information
 19. MeshGen1D
-
-module Nodal1D {
-subroutines:
-JacobiP_(x, alpha, beta, N,Nc, P)
-  :x(1:Nc),P(0:N,1:Nc)
-GradJacobiP_(x,alpha,beta,N,Nc,dP)
-  :x(1:Nc),dP(0:N,1:Nc)
-JacobiGQ_(alpha,beta,N,P)
-  :P(0:N,1:2),1 for nodes, 2 for weights
-JacobiGL_(alpha,beta,N,P)
-  :P(0:N)
-LegendreGL_(N,P)
-  :P(0:N,1:2),1 for nodes, 2 for weights
-Vandermonde1D_(N,Nc,r,P)
-  :r(1:Nc),P(1:Nc,0:N)
-GradVandermonde1D_(N,Nc,r,DVr)
-  :r(1:Nc),DVr(1:Nc,0:N)
-Dmatrix1D_(N,Nc,r,V)
-  : Nc=N+1
-  : r(1:Nc),V(1:Nc,1:Nc)
-
-Functions:
-Lift1D_(Nc,V) output P(Nc,2)
-  : V(1:Nc,1:Nc)
-}
-module Grid1D{
-
-}
